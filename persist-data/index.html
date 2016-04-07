@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Persist Data test</title>
+<style>
+body {
+  background: cyan;
+}
+</style>
+</head>
+<body>
+  
+  type below to set a "foo" key for localStorage and cookie:
+  <br><br>
+  <input id="foo"/>
+  <br><br>
+  
+  <table>
+    <tr><td>document.cookie:</td><td>foo = <label id="cookieLabel"></label></td></tr>
+    <tr><td>localStorage:</td><td>foo = <label id="localStorageLabel"></label></td></tr>
+  </table>
+
+  <script>
+    function updateLabels() {
+      cookieLabel.innerHTML = document.cookie.replace(/(?:(?:^|.*;\s*)foo\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+      localStorageLabel.innerHTML = localStorage.foo;
+    }
+    foo.oninput = function(e) {
+      localStorage.foo = e.target.value;
+      document.cookie = "foo="+e.target.value;
+      updateLabels();
+    };
+    updateLabels();
+  </script>
+
+</body>
+</html>
